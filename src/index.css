@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-ink-950 font-body text-mist antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgba(79, 216, 176, 0.3);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid #7fe8c8;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-balance;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .font-display-tight {
+    letter-spacing: -0.015em;
+  }
+  .card {
+    @apply rounded-2xl border border-white/[0.07] bg-ink-800/60 shadow-card backdrop-blur-sm;
+  }
+  .hairline {
+    @apply border-white/[0.07];
+  }
+}
+
+/* Receipt paper with a torn bottom edge */
+.receipt-edge {
+  position: relative;
+}
+.receipt-edge::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  background:
+    linear-gradient(135deg, #f3eee3 5px, transparent 0) 0 0 / 10px 10px,
+    linear-gradient(225deg, #f3eee3 5px, transparent 0) 0 0 / 10px 10px;
+}
+
+/* Soft scroll mask for horizontally scrolling content on small screens */
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2a3756 transparent;
+}
+
+/* Subtle animated beams inspired by the portfolio's technical atmosphere. */
+.background-beams {
+  position: absolute;
+  inset: -20% -10%;
+  overflow: hidden;
+  opacity: 0.6;
+  transform: rotate(-8deg);
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
+}
+
+.background-beam {
+  position: absolute;
+  top: -15%;
+  width: 1px;
+  height: 130%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(127, 232, 200, 0.04) 24%,
+    rgba(127, 232, 200, 0.2) 50%,
+    rgba(232, 185, 121, 0.06) 72%,
+    transparent
+  );
+  filter: blur(0.2px);
+  animation: beam-drift linear infinite;
+}
+
+@keyframes beam-drift {
+  0%,
+  100% {
+    transform: translateY(-4%) scaleY(0.9);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(4%) scaleY(1.05);
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-beam {
+    animation: none;
+  }
+}
