@@ -11,6 +11,15 @@ npm run build      # type-check + production build into /dist
 npm run preview    # serve the production build locally
 ```
 
+## Publish on GitHub Pages
+
+Every push to `main` builds and deploys the portfolio through GitHub Actions.
+After the first push, open the repository's **Settings → Pages** and set
+**Source** to **GitHub Actions** if it is not already selected.
+
+The published site will be available at:
+`https://jadelangni.github.io/jademiral-portfolio/`
+
 ## Edit your content (no UI code needed)
 
 | What | File |
